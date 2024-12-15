@@ -8,30 +8,29 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f0f8ff; /* Light blue background */
+            background-color: #f0f8ff;
             margin: 0;
         }
 
-        /* Header Styles */
         .header {
-            position: fixed; /* Fixed to the top */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 80px; /* Adjust height as needed */
+            height: 80px;
             background-color: #20B2AA;
             color: white;
-            display: flex; /* Flexbox for alignment */
-            align-items: center; /* Center vertically */
-            padding: 0 20px; /* Add padding for spacing */
-            z-index: 1000; /* Ensure it's above the sidebar */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .header .logo {
-            width: 50px; /* Adjust logo size */
+            width: 50px;
             height: auto;
-            margin-right: 10px; /* Space between logo and text */
+            margin-right: 10px;
         }
 
         .header h1 {
@@ -39,10 +38,9 @@
             font-size: 24px;
         }
 
-        /* Main Content */
         .container {
-            margin-left: 270px; /* Leave space for the sidebar */
-            margin-top: 100px; /* Leave space for the header */
+            margin-left: 270px;
+            margin-top: 100px;
             padding: 20px;
         }
 
@@ -74,6 +72,11 @@
         .error, .text-danger {
             color: red;
         }
+
+        .search-results {
+            max-height: 400px;
+            overflow-y: auto;
+        }
     </style>
 </head>
 <body>
@@ -91,9 +94,88 @@
                         <h4><span class="glyphicon glyphicon-user"></span> Patient List</h4>
                     </div>
                     <div class="panel-body">
-                        <ul class="list-group">                           
-                            <?php include 'viewpatient_backend.php'; ?>
-                        </ul>
+                        <!-- Search Form -->
+                        <form action="" method="GET">
+                            <div class="form-group">
+                                <label for="search">Search by Name or ID</label>
+                                <input type="text" id="search" name="search" class="form-control" placeholder="Enter Name or ID" list="suggestions">
+                                <datalist id="suggestions">
+                                    <?php
+                                    $servername = "localhost";
+                                    $username = "root";
+                                    $password = "";
+                                    $database = "clinic_data";
+
+                                    $connection = new mysqli($servername, $username, $password, $database);
+
+                                    if ($connection->connect_error) {
+                                        die("Connection Failed: " . $connection->connect_error);
+                                    }
+
+                                    $suggestionQuery = "SELECT PatientID, FirstName, LastName FROM patients";
+                                    $suggestionResult = $connection->query($suggestionQuery);
+                                    while ($row = $suggestionResult->fetch_assoc()) {
+                                        echo "<option value='" . $row['PatientID'] . " - " . $row['FirstName'] . " " . $row['LastName'] . "'>";
+                                    }
+                                    ?>
+                                </datalist>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
+
+                        <!-- Search Results Table -->
+                        <div class="search-results mt-3">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Patient ID</th>
+                                        <th>First Name</th>
+                                        <th>Middle Name</th>
+                                        <th>Last Name</th>
+                                        <th>Sex</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $searchQuery = "";
+                                    if (isset($_GET['search']) && !empty($_GET['search'])) {
+                                        $searchTerm = $connection->real_escape_string($_GET['search']);
+                                        $searchParts = explode(" ", $searchTerm);
+                                        $conditions = [];
+
+                                        foreach ($searchParts as $part) {
+                                            $part = $connection->real_escape_string($part);
+                                            $conditions[] = "PatientID LIKE '%$part%'";
+                                            $conditions[] = "FirstName LIKE '%$part%'";
+                                            $conditions[] = "LastName LIKE '%$part%'";
+                                            $conditions[] = "CONCAT(FirstName, ' ', LastName) LIKE '%$part%'";
+                                            $conditions[] = "CONCAT(FirstName, ' ', MiddleInitial, ' ', LastName) LIKE '%$part%'";
+                                        }
+
+                                        $searchQuery = " WHERE " . implode(" OR ", $conditions);
+                                    }
+
+                                    $query = "SELECT PatientID, FirstName, MiddleInitial, LastName, Sex FROM patients" . $searchQuery;
+                                    $result = $connection->query($query);
+
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<tr>";
+                                            echo "<td>" . htmlspecialchars($row['PatientID']) . "</td>";
+                                            echo "<td>" . htmlspecialchars($row['FirstName']) . "</td>";
+                                            echo "<td>" . htmlspecialchars($row['MiddleInitial']) . "</td>";
+                                            echo "<td>" . htmlspecialchars($row['LastName']) . "</td>";
+                                            echo "<td>" . htmlspecialchars($row['Sex']) . "</td>";
+                                            echo "</tr>";
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='5' class='text-center'>No data found</td></tr>";
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+
                         <a href="index.php" class="btn btn-primary mt-3">Back to Dashboard</a>
                     </div>
                 </div>
@@ -101,7 +183,6 @@
         </div>
     </div>
 
-  
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

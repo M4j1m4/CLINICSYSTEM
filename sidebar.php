@@ -47,10 +47,12 @@
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <a href="index.php" class="active">Dashboard</a>
-        <a href="add_patient.php">Add Patient</a>
+        <a href="waitlang.php" class="active">Dashboard</a>
+        <a href="index.php">Add Patient</a>
         <a href="viewpatient.php">View Patients</a>
-        <a href="consultation_history.php">Consultation History</a>
+        <a href="consultation_form.php">Consultation Form</a>
+        <a href="frontconsult.php">Consultation History</a>
+        <a href="tally.php">Special-Case Tally</a>
         <a href="settings.php">Settings</a>
         <a href="login.php">Logout</a>
     </div>
