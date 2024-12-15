@@ -25,15 +25,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
-
+        // Successful login
         $user = $result->fetch_assoc();
 
+        // Store user information in the session
         $_SESSION['username'] = $user['Username'];
 
+        // Redirect to the dashboard or another page
         header("Location: index.php");
         exit();
     } else {
-        echo "<script>alert('Invalid Username or Password. Please try again.'); window.location.href='login.php';</script>";
+        // Redirect back to login page with error message
+        $error = "Invalid Username or Password!";
+        header("Location: login.php?error=" . urlencode($error));
+        exit();
     }
 }
 

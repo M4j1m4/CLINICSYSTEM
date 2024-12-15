@@ -55,6 +55,12 @@
         .login-form button:hover {
             background-color: #1c9a94;
         }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -62,6 +68,14 @@
         <form class="login-form" method="post" action="loginBackEnd.php">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
+            
+            <!-- Display error message -->
+            <?php
+            if (isset($_GET['error'])) {
+                echo "<div class='error-message'>" . htmlspecialchars($_GET['error']) . "</div>";
+            }
+            ?>
+
             <button type="submit">Login</button>
         </form>
     </div>

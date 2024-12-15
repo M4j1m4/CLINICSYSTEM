@@ -79,7 +79,17 @@
         }
 
         .container {
-            margin-top: 50px;
+            margin-top: 150px;
+        }
+
+        .card {
+            margin-top: 50px; /* Adjust the margin to your preference */
+        }
+
+        .header .notification-icon {
+        margin-left: 20px; /* Pushes the notification icon to the right */
+        display: flex;
+        align-items: center; /* Aligns the bell icon and badge vertically */
         }
     </style>
 </head>
