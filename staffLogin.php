@@ -87,26 +87,18 @@
             cursor: pointer;
         }
     </style>
-    <script>
-        function handleRoleChange() {
-            var role = document.getElementById("role").value;
-            if (role === "staff") {
-                window.location.href = "staffLogin.php"; // Redirect to staffLogin.php
-            }
-        }
-    </script>
 </head>
 <body>
     <!-- Dropdown for role selection -->
     <div class="role-dropdown">
-        <select id="role" name="role" onchange="handleRoleChange()">
+        <select id="role" name="role">
             <option value="admin">Admin</option>
             <option value="staff">Staff</option>
         </select>
     </div>
 
     <div class="login-container">
-        <form class="login-form" method="post" action="loginBackEnd.php">
+        <form class="login-form" method="post" action="staffLoginBackEnd.php">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             

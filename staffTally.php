@@ -95,7 +95,7 @@ $result = $connection->query($query);
     </style>
 </head>
 <body>
-<?php include 'sidebar.php'; ?>
+<?php include 'staffSideBar.php'; ?>
 <!-- Header Section with Logo -->
 <div class="header d-flex align-items-center">
     <img src="images/UDMCLINIC_LOGO.png" alt="Logo" class="logo">

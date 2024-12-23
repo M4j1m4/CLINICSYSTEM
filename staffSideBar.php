@@ -45,12 +45,12 @@
     </style>
 </head>
 <body>
-    <!-- Sidebar -->    
+    <!-- Sidebar -->
     <div class="sidebar">
-        <a href="tally.php" class="active">Dashboard</a>
-        <a href="index.php">Add Patient</a>
-        <a href="viewpatient.php">View Patients</a>
-        <a href="frontconsult.php">Consultation</a>
+        <a href="staffTally.php" class="active">Dashboard</a>
+        <a href="staffIndex.php">Add Patient</a>
+        <a href="staffViewpatient.php">View Patients</a>
+        <a href="staffFrontconsult.php">Consultation</a>
         <a href="settings.php">Settings</a>
         <a href="login.php">Logout</a>
     </div>

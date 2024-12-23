@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2024 at 05:27 AM
+-- Generation Time: Dec 23, 2024 at 02:19 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,15 +29,15 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `account` (
   `id` int(11) NOT NULL,
-  `UserName` varchar(50) NOT NULL,
-  `PassWord` varchar(50) NOT NULL
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `UserName`, `PassWord`) VALUES
+INSERT INTO `account` (`id`, `username`, `password`) VALUES
 (1, 'Admin', '159263');
 
 -- --------------------------------------------------------
@@ -102,19 +102,23 @@ CREATE TABLE `patients` (
   `height` varchar(10) NOT NULL,
   `weight` varchar(10) NOT NULL,
   `yearLevel` varchar(20) NOT NULL,
-  `specialCases` varchar(20) NOT NULL
+  `specialCases` varchar(20) NOT NULL,
+  `Program` varchar(20) NOT NULL,
+  `Student_Num` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `patients`
 --
 
-INSERT INTO `patients` (`PatientID`, `FirstName`, `LastName`, `MiddleInitial`, `Sex`, `DOB`, `Address`, `ContactNumber`, `CreatedAt`, `UpdatedAt`, `age`, `civil_status`, `emergency_number`, `guardian`, `height`, `weight`, `yearLevel`, `specialCases`) VALUES
-(1, 'John', 'Doe', '', 'M', '1990-05-15', '123 Main St', '1234567890', '2024-12-04 15:04:54', '2024-12-04 15:04:54', 0, '', '', '', '', '', '', ''),
-(2, 'Jane', 'Smith', '', 'F', '1985-03-22', '456 Elm St', '0987654321', '2024-12-04 15:04:54', '2024-12-04 15:04:54', 0, '', '', '', '', '', '', ''),
-(6, 'Khen', 'Abesamis', 'Imperial', 'M', '0000-00-00', '1585 Lawin St', '9454595720', '2024-12-11 22:28:32', '2024-12-11 22:28:32', 21, 'Single', '9454595720', 'Marilou Abesamis', '188', '60', '4th Year', 'Pregnant'),
-(7, 'eduard', 'bicaldo', 'john', 'M', '0000-00-00', '1585 Lawin St', '9454595720', '2024-12-11 22:42:43', '2024-12-11 22:42:43', 64, 'Maried', '9454595720', 'Eduard John Bicaldo', '188', '55', '4th Year', 'Pregnant'),
-(8, 'xander', 'alam', 'cruz', 'M', '0000-00-00', '1585 Lawin St', '9454595720', '2024-12-15 12:11:55', '2024-12-15 12:11:55', 55, 'Maried', '9454595720', 'Eduard John Bicaldo', '188', '60', '4th Year', 'Hepa B');
+INSERT INTO `patients` (`PatientID`, `FirstName`, `LastName`, `MiddleInitial`, `Sex`, `DOB`, `Address`, `ContactNumber`, `CreatedAt`, `UpdatedAt`, `age`, `civil_status`, `emergency_number`, `guardian`, `height`, `weight`, `yearLevel`, `specialCases`, `Program`, `Student_Num`, `email`) VALUES
+(1, 'John', 'Doe', '', 'M', '1990-05-15', '123 Main St', '1234567890', '2024-12-04 15:04:54', '2024-12-21 16:26:03', 0, '', '', '', '', '', '', '', '', '21-14-212', ''),
+(2, 'Jane', 'Smith', '', 'F', '1985-03-22', '456 Elm St', '0987654321', '2024-12-04 15:04:54', '2024-12-04 15:04:54', 0, '', '', '', '', '', '', '', '', '', ''),
+(15, 'Khen', 'Abesamis', '', 'M', '0000-00-00', '', '9454595720', '2024-12-21 16:30:47', '2024-12-21 16:30:47', 21, 'Single', '', '', '200', '0', '4th Year', '', '', '21-14-001', 'abesamiskheni@gmail.com'),
+(16, 'Khen', 'Abesamis', '', 'F', '0000-00-00', '', '9454595720', '2024-12-21 16:32:14', '2024-12-21 16:32:14', 21, 'Single', '', '', '200', '0', '4th Year', '', 'CBA', '21-14-001', 'abesamiskheni@gmail.com'),
+(17, 'Linda ', 'Sugg', '', 'M', '0000-00-00', '', '9454595720', '2024-12-21 16:36:51', '2024-12-21 16:36:51', 21, 'Single', '', '', '122', '0', '2nd Year', 'PTB - Complied', 'CBA', '21-14-002', 'khenabesamis@gmail.com'),
+(18, 'pusa', 'Lacy', '', 'F', '0000-00-00', '', '9454595720', '2024-12-23 20:39:04', '2024-12-23 20:39:04', 5, 'Single', '', '', '188', '0', '4th Year', 'For APL', 'CAS', '21-14-333', 'khenabesamis@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -180,6 +184,25 @@ INSERT INTO `staff` (`StaffID`, `FirstName`, `LastName`, `Role`, `CreatedAt`, `U
 (1, 'Rei', 'Monik', 'Doctor', '2024-12-04 15:06:15', '2024-12-04 15:06:15'),
 (2, 'Larry', 'Kristie', 'Nurse', '2024-12-04 15:06:15', '2024-12-04 15:06:15');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staffaccount`
+--
+
+CREATE TABLE `staffaccount` (
+  `id` int(11) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `staffaccount`
+--
+
+INSERT INTO `staffaccount` (`id`, `username`, `password`) VALUES
+(1, 'staff1', '159263');
+
 --
 -- Indexes for dumped tables
 --
@@ -225,6 +248,12 @@ ALTER TABLE `staff`
   ADD PRIMARY KEY (`StaffID`);
 
 --
+-- Indexes for table `staffaccount`
+--
+ALTER TABLE `staffaccount`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -244,7 +273,7 @@ ALTER TABLE `consultations`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `PatientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `PatientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `patientspecialcases`
@@ -263,6 +292,12 @@ ALTER TABLE `specialcases`
 --
 ALTER TABLE `staff`
   MODIFY `StaffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `staffaccount`
+--
+ALTER TABLE `staffaccount`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

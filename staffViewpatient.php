@@ -80,7 +80,7 @@
     </style>
 </head>
 <body>
-    <?php include 'sidebar.php'; ?>
+    <?php include 'staffSideBar.php'; ?>
     <div class="header d-flex align-items-center">
         <img src="images/UDMCLINIC_LOGO.png" alt="Logo" class="logo">
         <h1>UDM Clinic</h1>

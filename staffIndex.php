@@ -198,7 +198,7 @@
 </head>
 <body>
     <!-- Include Sidebar -->
-    <?php include 'sidebar.php'; ?>
+    <?php include 'staffSideBar.php'; ?>
 
     <!-- Header Section -->
     <div class="header">
