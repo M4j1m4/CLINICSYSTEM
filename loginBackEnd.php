@@ -17,11 +17,11 @@ if ($conn->connect_error) {
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $username = mysqli_real_escape_string($conn, $_POST['name']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
     // Query to check if the username and password match
-    $sql = "SELECT * FROM account WHERE Username = '$username' AND Password = '$password'";
+    $sql = "SELECT * FROM account WHERE name = '$username' AND Password = '$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
 
         // Store user information in the session
-        $_SESSION['username'] = $user['Username'];
+        $_SESSION['name'] = $user['name'];
 
         // Redirect to the dashboard or another page
         header("Location: index.php");

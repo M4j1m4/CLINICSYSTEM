@@ -107,7 +107,7 @@
 
     <div class="login-container">
         <form class="login-form" method="post" action="loginBackEnd.php">
-            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="name" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             
             <!-- Display error message -->
@@ -118,7 +118,7 @@
             ?>
 
             <button type="submit">Login</button>
-            <a href="forgotPassword.php" class="forgot-password">Forgot Password?</a>
+            <a href="emailForgotPass.php" class="forgot-password">Forgot Password?</a>
         </form>
     </div>
 </body>

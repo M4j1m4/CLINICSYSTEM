@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2024 at 02:19 PM
+-- Generation Time: Dec 28, 2024 at 02:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,16 +29,25 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `account` (
   `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `name` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `email` text NOT NULL,
+  `verification_code` text NOT NULL,
+  `email_verified_at` datetime DEFAULT NULL,
+  `new_password` varchar(50) NOT NULL,
+  `confirm_password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `username`, `password`) VALUES
-(1, 'Admin', '159263');
+INSERT INTO `account` (`id`, `name`, `password`, `email`, `verification_code`, `email_verified_at`, `new_password`, `confirm_password`) VALUES
+(16, 'admin', '159263', 'abesamiskheni@gmail.com', '', '2024-12-28 20:52:41', '', ''),
+(18, 'minad', '159263', '', '', NULL, '', ''),
+(19, 'admin', '$2y$10$9Xqb9d9xqK4QX9UiOXS1tOjszl6nVXUOYC/yhALbNOb', 'abesamiskheni@gmail.com', '', '2024-12-28 21:04:54', '', ''),
+(20, 'admin', '$2y$10$sJsK6Fn6HTshvCGBz6fqbO.V3DPrjln3RPCXarWvqpP', 'abesamiskheni@gmail.com', '', '2024-12-28 21:06:20', '', ''),
+(21, 'admin', '$2y$10$Fxt6XvcVGI0kSiB2Jb.z4.p.fUBHFRtxkGN1IhAYhA0', 'abesamiskheni@gmail.com', '', '2024-12-28 21:07:16', '', '');
 
 -- --------------------------------------------------------
 
@@ -76,7 +85,8 @@ INSERT INTO `consultations` (`ConsultationID`, `PatientID`, `TimeIn`, `TimeOut`,
 (12, 6, '11:30:00', '11:30:00', NULL, '2024-12-15 11:30:36', '2024-12-15 11:30:36', NULL, '2024-12-15', 'sadsadsa', 'dasdsadasd', 'dasdsadasda', 'dasdadsadsa', '2024-12-19', 'Doc', ''),
 (15, 1, '11:38:00', '12:38:00', NULL, '2024-12-15 11:39:00', '2024-12-15 11:39:00', NULL, '2024-12-15', 'cancer', 'cancer', 'cancer', '', '2024-12-19', 'Doc', ''),
 (16, 1, '11:39:00', '12:39:00', NULL, '2024-12-15 11:39:38', '2024-12-15 11:39:38', NULL, '2024-12-15', 'cancer', 'cancer', 'cancer', 'cancer', '2024-12-20', 'Doc', ''),
-(18, 2, '01:44:00', '12:45:00', NULL, '2024-12-15 11:44:47', '2024-12-15 11:44:47', NULL, '2024-12-05', 'dsadsad', 'dsadsadas', 'dsadsad', 'dsadsadsa', '2024-12-25', 'Doc', '');
+(18, 2, '01:44:00', '12:45:00', NULL, '2024-12-15 11:44:47', '2024-12-15 11:44:47', NULL, '2024-12-05', 'dsadsad', 'dsadsadas', 'dsadsad', 'dsadsadsa', '2024-12-25', 'Doc', ''),
+(19, 2, '17:21:00', '22:20:00', NULL, '2024-12-24 17:20:29', '2024-12-24 17:20:29', NULL, '2024-12-09', 'dsadas', 'dsadasd', 'dsadsad', 'xd123', '2024-12-27', 'Doc', '');
 
 -- --------------------------------------------------------
 
@@ -261,13 +271,13 @@ ALTER TABLE `staffaccount`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `consultations`
 --
 ALTER TABLE `consultations`
-  MODIFY `ConsultationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ConsultationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `patients`
